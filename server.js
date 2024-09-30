@@ -17,3 +17,15 @@ const path = require('path')
 
 const userRoutes= require("./routes/userRoutes");
 const adminRoutes= require("./routes/adminRoutes") 
+
+const app = express();
+
+app.use(bodyParser.json());
+
+const db= process.env.MONGO_DB
+
+mongoose.connect(db,{
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+}).then(()=>console.log("Database connected successfully!🎉")
+).catch((err)=>console.error("unable to connect",err))
