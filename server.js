@@ -1,31 +1,45 @@
-require('dotenv').config()
-// "bcrypt": "^5.1.1",
-// "body-parser": "^1.20.3",
-// "cors": "^2.8.5",
-// "dotenv": "^16.4.5",
-// "express": "^4.21.0",
-// "handlebars": "^4.7.8",
-// "jsonwebtoken": "^9.0.2",
-// "mongoose": "^8.7.0",
-// "multer": "^1.4.5-lts.1",
-// "nodemon": "^3.1.7",
-// "path": "^0.12.7"
-const express= require('express');
-const bodyParser= require('body-parser');
-const mongoose= require('mongoose');
-const path = require('path')
-
-const userRoutes= require("./routes/userRoutes");
-const adminRoutes= require("./routes/adminRoutes") 
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const multer = require('multer'); 
+const path = require('path');
+const cors = require('cors');
+const exphbs = require('express-handlebars'); 
+const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const { authenticateUser } = require('./middleware/auth'); 
 
 const app = express();
 
-app.use(bodyParser.json());
 
-const db= process.env.MONGO_DB
 
-mongoose.connect(db,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
-}).then(()=>console.log("Database connected successfully!🎉")
-).catch((err)=>console.error("unable to connect",err))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+
+mongoose.connect(process.env.MONGO_DB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((error) => console.error('Database connection error:', error));
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
+app.use('/organize/users', userRoutes);
+app.use('/organize/admin', adminRoutes);
+
+
+
+
+
+
+
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
