@@ -165,3 +165,24 @@ const createToken = (id) => {
     }
   };
   
+
+  const getImportantTasks = async (req, res) => {
+    try {
+      const userId = req.user._id;
+  
+
+      const importantTasks = await Task.find({ owner: userId, isImportant: true });
+  
+     
+      console.log('Fetched important tasks:', importantTasks);
+  
+      if (!importantTasks || importantTasks.length === 0) {
+        return res.status(404).json({ message: 'No important tasks found' });
+      }
+  
+      res.status(200).json(importantTasks);
+    } catch (error) {
+      console.error('Error fetching important tasks:', error);
+      res.status(400).json({ error: 'Failed to fetch important tasks' });
+    }
+  };
