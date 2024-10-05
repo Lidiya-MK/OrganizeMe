@@ -1,0 +1,72 @@
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: white;
+}
+
+.brand-name {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: #111438;
+    font-weight: bold;
+}
+
+
+.login-card {
+    background-color: rgba(23, 22, 22, 0.308); 
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-input {
+    margin-bottom: 15px;
+}
+
+.login-button {
+    width: 90%;
+    padding: 5px;
+    background-color: #541a7b;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.login-button:hover {
+    background-color: #0e1034;
+}
+
+.signup-button{
+    width: 90%;
+    padding: 5px;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.card-title{
+    padding-top:30px ;
+    padding-bottom:20px;
+}
