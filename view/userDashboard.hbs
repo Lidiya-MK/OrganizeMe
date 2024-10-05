@@ -3,9 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/userDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>OrganizeMe - Dashboard</title>
 </head>
+
 <body>
+<header class="header">
+    <div class="brand-name">OrganizeMe</div>
+    <div class="user-info">
+        <img src="/assets/default-image.jpg" alt="User Profile" class="profile-pic" id="userProfilePic">
+        <div>
+            <strong id="userName">tirusew</strong><br>
+            <span class="email" id="userEmail">tirusew@example.com</span>
+        </div>
+     
+        <i id="themeToggleIcon" class="fas fa-moon" style="cursor: pointer; margin-left: 20px;"></i>
+    </div>
+</header>
+
+
+<div class="d-flex flex-row">
+ 
+    <nav class="sidebar">
+        <div class="sidebar-header">Weekly Task Log</div>
+        <div class="sidebar-item" id="importantTasks">Important</div>
+        <div class="sidebar-item" id="monday">Monday</div>
+        <div class="sidebar-item" id="tuesday">Tuesday</div>
+        <div class="sidebar-item" id="wednesday">Wednesday</div>
+        <div class="sidebar-item" id="thursday">Thursday</div>
+        <div class="sidebar-item" id="friday">Friday</div>
+        <div class="sidebar-item" id="saturday">Saturday</div>
+        <div class="sidebar-item" id="sunday">Sunday</div>
+        <div class="sidebar-item" id="changeProfilePicture">Update Profile</div>
+    </nav>
+
+
+    <div class="main-content">
+ 
+        <div class="card todo-card" id="taskCard" style="display: block;">
+            <div class="card-header">
+                <span id="currentDay">Monday</span>
+            </div>
+            <div class="card-body">
+
+                <div id="taskInputArea" class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Enter new task" id="newTaskInput">
+                    <button class="btn btn-primary" id="addTaskButton">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <ul class="list-group" id="taskList"></ul>
+            </div>
+        </div>
+
+
+        <div class="card important-tasks-card" id="importantTasksCard" style="display: none;">
+            <div class="card-header">
+                Important
+            </div>
+            <div class="card-body">
+                <ul class="list-group" id="importantTaskList"></ul>
+            </div>
+        </div>
+
+
+        <div class="profile-picture-section" id="profilePictureSection" style="display: none;">
+            <div style="position: relative; display: inline-block;">
+                <img src="/assets/default-image.jpg" alt="User Profile" class="profile-pic-large" id="userProfilePicLarge">
+
+  
+                <button id="changeProfileButton" class="btn btn-primary">
+                    <i class="fas fa-pencil-alt" style="font-size: 24px; color: rgb(152, 60, 227);"></i>
+                </button>
+
+
+                <input type="file" id="fileInput" style="display: none;" accept="image/*">
+            </div>
+
+      
+            <div class="user-info2">
     
+                <input type="text" id="usernameInput" placeholder="Username" class="form-control" style="margin-top: 15px;">
+                
+
+                <input type="email" id="emailInput" placeholder="Email" class="form-control" style="margin-top: 10px;">
+            </div>
+
+            <button id="submitProfileChangesButton" class="btn btn-success" style="margin-top: 15px;">Update</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    const body = document.body;
+    const themeToggleIcon = document.getElementById('themeToggleIcon');
+
+
+    themeToggleIcon.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+
+        if (body.classList.contains('dark-mode')) {
+            themeToggleIcon.classList.remove('fa-moon');
+            themeToggleIcon.classList.add('fa-sun');
+        } else {
+            themeToggleIcon.classList.remove('fa-sun');
+            themeToggleIcon.classList.add('fa-moon');
+        }
+    });
+
+
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function() {
+            
+                document.querySelectorAll('.sidebar-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+
+           
+                this.classList.add('active');
+            });
+        });
+    
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="/scripts/user/getUser.js"></script>
+<script src="/scripts/user/userTasks.js"></script>
+<script src="/scripts/user/taskActions.js"></script>
+<script src="/scripts/user/markTaskImportant.js"></script>
+<script src="/scripts/user/proUpdate.js"></script>
+<script src="/scripts/sidebar.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/scripts/user/proUpdate.js"></script>
+<script src="/scripts/user/displayProfile.js"></script>
+<script src="/scripts/user/replacePropic.js"></script>
 </body>
 </html>
