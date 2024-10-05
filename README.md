@@ -3,6 +3,7 @@
 OrganizeMe is your go-to **weekly task management web app**! It’s designed to help you keep track of your to-do list in the simplest and most efficient way possible. With OrganizeMe, you’ll no longer miss a beat—whether it’s getting your work done or remembering that important coffee date.
 
 ---
+![image](https://github.com/user-attachments/assets/fc7bb853-858c-4a6b-90d4-0ab57c858ea6)
 
 ## Features 🚀
 
@@ -64,7 +65,7 @@ All your routes are secured with JWT (JSON Web Token). Your data stays private a
 <img width="851" alt="signup" src="https://github.com/user-attachments/assets/69130bf3-73d4-4371-94c0-e6921c97e71d">
 
 
-<img width="820" alt="login" src="https://github.com/user-attachments/assets/006b03e9-9c0e-4ee2-989a-158937fb6221">
+<img width="937" alt="important" src="https://github.com/user-attachments/assets/dbd37232-3826-4b88-aacf-0dba61ef7417">
 
 
 
