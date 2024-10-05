@@ -54,6 +54,13 @@ app.use('/organize/admin', adminRoutes);
 
 
 
+app.get('/user/login', (req, res) => {
+    res.render('userLogin');  
+  });
+  
+  app.get('/user/signup', (req, res) => {
+    res.render('userSignup');  
+  });
 
 
 
