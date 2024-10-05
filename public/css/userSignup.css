@@ -1,0 +1,71 @@
+body{
+    background-color: #111438;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+
+.brand-name {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 1000;
+  }
+
+.custom-card {
+    border: 2px solid #111438; 
+    border-radius: 0.5rem;
+}
+
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    height: 100%; 
+}
+
+.signup-button {
+    color: #111438;
+    background-color: white;
+    border: 2px solid #111438;
+    margin-top: 40px;
+    border-radius: 20px;
+    padding: 5px;
+    width: 90%; 
+  
+}
+.log-button {
+    color: #111438;
+    background-color: white;
+    border: 2px solid #471658;
+    margin-top: 10px;
+    border-radius: 20px;
+    padding: 5px;
+    width: 90%; 
+  
+}
+.signup-button:hover{
+    background-color: #111438;
+    color: white;
+    border: none;
+    transition: 1s;
+}
+.signup-button:active{
+    background-color: #56b2f8;
+    color: white;
+    border: none;
+
+}
+
+
+.card-title{
+    margin-bottom: 30px;
+    margin-top: 60px;
+ 
+}
