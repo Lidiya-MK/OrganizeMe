@@ -17,14 +17,12 @@ For every day of the week, you’ve got your personal task list where you can:
 
 ### 🧑‍💻 **Customizable User Profile**  
 Personalize your OrganizeMe experience!  
-- Update your **profile picture** (yes, no more default avatars unless you like them).
-- Change your **username** and **email** whenever you like. It’s your world, after all.
+- Update your **profile picture**
+- Change your **username** and **email** whenever you like.
 
 ### 🔒 **Secure Authentication with JWT**  
-All your routes are secured with JWT (JSON Web Token). This is the real deal! Your data stays private and secure while you manage your tasks. 🎯
+All your routes are secured with JWT (JSON Web Token). Your data stays private and secure while you manage your tasks. 
 
-> Why JWT?  
-Well, I felt the pain of working without it in my previous project, so now I’ve leveled up! 💪
 
 ---
 
@@ -35,8 +33,8 @@ Well, I felt the pain of working without it in my previous project, so now I’v
 - **JWT Authentication** ensures your routes are secure.
 
 ### **Front-end:**
-- **Handlebars** is used to create clean and reusable templates.
-- **Bootstrap** gives the app a sleek and responsive design.
+- **Handlebars** is used to create templates.
+- **Bootstrap** gives the app a responsive design.
 
 ---
 
