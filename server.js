@@ -13,6 +13,15 @@ const app = express();
 
 
 
+
+app.engine('hbs', exphbs.engine({
+    extname: 'hbs',  
+    layoutsDir: path.join(__dirname, 'view'), 
+    defaultLayout: false,
+  }));
+  app.set('view engine', 'hbs');
+  app.set('views', path.join(__dirname, 'view'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
