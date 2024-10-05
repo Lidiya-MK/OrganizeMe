@@ -148,3 +148,20 @@ const createToken = (id) => {
     }
   };
   
+
+  const markTaskDone = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const task = await Task.findOne({ _id: id, owner: req.user._id });
+      if (!task) return res.status(404).json({ error: 'Task not found' });
+      
+  
+      task.isDone = !task.isDone; 
+      
+      await task.save(); 
+      res.status(200).json(task); 
+    } catch (error) {
+      res.status(400).json({ error: 'Failed to mark task as done' });
+    }
+  };
+  
