@@ -63,3 +63,6 @@ Well, I felt the pain of working without it in my previous project, so now I’v
 
 5. Visit http://localhost:5000/user/signup and start organizing your life! 🎉
 
+<img width="851" alt="signup" src="https://github.com/user-attachments/assets/69130bf3-73d4-4371-94c0-e6921c97e71d">
+
+
