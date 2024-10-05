@@ -1,6 +1,6 @@
 ﻿# OrganizeMe 📝✨
 
-OrganizeMe is your go-to **weekly task management web app**! It’s designed to help you keep track of your to-do list in the simplest and most efficient way possible. With OrganizeMe, you’ll no longer miss a beat—whether it’s getting your work done or remembering that important coffee date.
+OrganizeMe is your go-to **weekly task management web app**! It’s designed to help you keep track of your to-do list in the simplest and most efficient way possible. With OrganizeMe, you’ll no longer miss a beat—whether it’s getting your work done or remembering that important meeting.
 
 ---
 ![image](https://github.com/user-attachments/assets/fc7bb853-858c-4a6b-90d4-0ab57c858ea6)
