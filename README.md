@@ -64,3 +64,7 @@ All your routes are secured with JWT (JSON Web Token). Your data stays private a
 <img width="851" alt="signup" src="https://github.com/user-attachments/assets/69130bf3-73d4-4371-94c0-e6921c97e71d">
 
 
+<img width="820" alt="login" src="https://github.com/user-attachments/assets/006b03e9-9c0e-4ee2-989a-158937fb6221">
+
+
+
