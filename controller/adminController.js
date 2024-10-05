@@ -21,7 +21,20 @@ const signupAdmin = async (req, res) => {
     res.status(400).json({ error: 'Admin signup failed' });
   }
 };
-
+const loginAdmin = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const admin = await Admin.findOne({ email }); 
+      if (!admin || !(await admin.comparePassword(password))) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+      const token = createToken(admin._id);
+      res.status(200).json({ token });
+    } catch (error) {
+      res.status(400).json({ error: 'Admin login failed' });
+    }
+  };
+  
 
 
 
