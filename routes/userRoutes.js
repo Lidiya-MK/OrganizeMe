@@ -14,7 +14,8 @@ const {
   getUserTasks,
   updateUser,
   getUserProfilePicture,
-  updateProfilePicture
+  updateProfilePicture,
+  setProfilePicture
  
 } = require('../controller/userController');
 
@@ -44,6 +45,7 @@ router.delete('/tasks/:id', authenticateUser, deleteTask);
 router.put('/tasks/:id/star', authenticateUser, starTask);    
 router.put('/tasks/:id/done', authenticateUser, markTaskDone); 
 router.get('/:id', authenticateUser, getUser);
+router.put('/:id/profile-picture/', authenticateUser, upload.single('profilePicture'), setProfilePicture);
 router.get('/tasks/:id', authenticateUser, getUserTasks);
 router.get('/tasks/important', authenticateUser, getImportantTasks);
 router.patch('/update',  authenticateUser,  updateUser);

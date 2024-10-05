@@ -240,6 +240,29 @@ const updateProfilePicture = async (req, res) => {
   };
   
 
+
+  const setProfilePicture = async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+      }
+  
+      const profilePicture = req.file.path; 
+      const userId = req.user._id; 
+  
+      const user = await User.findByIdAndUpdate(userId, { profilePicture }, { new: true });
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      res.status(200).json({ message: 'Profile picture updated successfully', user });
+    } catch (error) {
+      res.status(400).json({ error: 'Failed to update profile picture' });
+    }
+  };
+
+  
+
   module.exports = {
     signupUser,
     loginUser,
@@ -253,7 +276,8 @@ const updateProfilePicture = async (req, res) => {
     getImportantTasks,
     updateUser,
     getUserProfilePicture,
-    updateProfilePicture
+    updateProfilePicture,
+    setProfilePicture
     
   };
   
