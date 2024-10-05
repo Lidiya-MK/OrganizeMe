@@ -4,11 +4,12 @@
   "description": "This is a task manager app that users can use to manage their week",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "author": "Lidiya Mamo Kibret",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "bootstrap": "^5.3.3",
