@@ -88,3 +88,23 @@ const createToken = (id) => {
       res.status(400).json({ error: 'Task creation failed' });
     }
   };
+
+  const getUserTasks = async (req, res) => {
+    try {
+      const { day } = req.query; 
+      const userId = req.user._id;
+  
+
+      const query = { owner: userId };
+      
+     
+      if (day) {
+        query.day = day; 
+      }
+  
+      const tasks = await Task.find(query);
+      res.status(200).json(tasks);
+    } catch (error) {
+      res.status(400).json({ error: 'Failed to fetch tasks' });
+    }
+  };
