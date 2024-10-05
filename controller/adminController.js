@@ -49,6 +49,31 @@ const loginAdmin = async (req, res) => {
   };
 
 
+  const deleteUser = async (req, res) => {
+    try {
+      const { id } = req.params;
+  
+
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ error: 'Invalid user ID format' });
+      }
+  
+
+      const user = await User.findByIdAndDelete(id);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+ 
+      await Task.deleteMany({ owner: id });
+  
+      res.status(200).json({ message: 'User and associated tasks deleted successfully' });
+    } catch (error) {
+      console.error('Error during user deletion:', error); 
+      res.status(500).json({ error: 'User deletion failed due to server error' });
+    }
+  };
+
 
 module.exports = {
   signupAdmin,
