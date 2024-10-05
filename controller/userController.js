@@ -55,27 +55,6 @@ const createToken = (id) => {
         res.status(500).json({ message: 'Login failed. Please try again.' });
     }
   };
-
-
-  const setProfilePicture = async (req, res) => {
-    try {
-      if (!req.file) {
-        return res.status(400).json({ error: 'No file uploaded' });
-      }
-  
-      const profilePicture = req.file.path; 
-      const userId = req.user._id; 
-  
-      const user = await User.findByIdAndUpdate(userId, { profilePicture }, { new: true });
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-  
-      res.status(200).json({ message: 'Profile picture updated successfully', user });
-    } catch (error) {
-      res.status(400).json({ error: 'Failed to update profile picture' });
-    }
-  };
   
 
   const createTask = async (req, res) => {
@@ -258,5 +237,23 @@ const updateProfilePicture = async (req, res) => {
     } catch (error) {
         return res.status(500).json({ message: 'Error updating profile picture', error: error.message });
     }
+  };
+  
+
+  module.exports = {
+    signupUser,
+    loginUser,
+    createTask,
+    updateTask,
+    deleteTask,
+    starTask,
+    markTaskDone,
+    getUser,
+    getUserTasks,
+    getImportantTasks,
+    updateUser,
+    getUserProfilePicture,
+    updateProfilePicture
+    
   };
   
