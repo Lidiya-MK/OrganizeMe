@@ -64,6 +64,21 @@ app.get('/user/login', (req, res) => {
 
 
 
+app.get('/dashboard/:userId', (req, res) => {
+    const { userId } = req.params;
+    res.render('userDashboard', { userId }); 
+  });
+  
+
+  app.get('/admin/login', (req, res) => {
+    res.render('adminLogin'); 
+  });
+
+  app.get('/admin/dashboard', authenticateUser, (req, res) => {
+    res.render('adminDashboard');  
+  });
+
+
 
 
 const PORT = process.env.PORT || 5000;
