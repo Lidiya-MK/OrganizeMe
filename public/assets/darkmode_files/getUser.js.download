@@ -1,0 +1,55 @@
+// Function to fetch and update user data
+async function getUserData(userId) {
+    try {
+        // Retrieve the token from localStorage
+        const token = localStorage.getItem('authToken');
+        
+        if (!token) {
+            throw new Error("No authentication token found. Please log in again.");
+        }
+
+        // Fetch user data from your API with the token in the header
+        const response = await fetch(`http://localhost:5000/organize/users/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`, // Pass the token in the Authorization header
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error("Failed to fetch user data. Please check your token.");
+        }
+
+        const userData = await response.json();
+
+        // Update the UI with the fetched user data
+        document.getElementById("userName").textContent = userData.userName;
+        document.getElementById("userEmail").textContent = userData.email;
+
+        // Check if a custom profile picture is available; otherwise, use the default
+        const profilePictureUrl = userData.profilePicture || "/assets/default-image.avif";
+        document.getElementById("userProfilePic").src = profilePictureUrl;
+
+        // Optional: handle missing profile picture fallback
+        document.getElementById("userProfilePic").onerror = function() {
+            this.src = "/assets/default-image.avif"; // Fallback to default image
+        };
+        
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+        // Optionally, display an error message in the UI
+    }
+}
+
+// Function to extract the user ID from the URL
+function getUserIdFromURL() {
+    const urlPath = window.location.pathname; // Example: "/dashboard/12345"
+    const pathSegments = urlPath.split("/");  // Split the URL into parts
+    const userId = pathSegments[pathSegments.length - 1]; // Get the last part, which is the user ID
+    return userId;
+}
+
+// Call the function to fetch user data
+const userId = getUserIdFromURL();
+getUserData(userId);

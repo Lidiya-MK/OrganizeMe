@@ -1,0 +1,30 @@
+document.getElementById('submitProfileChangesButton').addEventListener('click', async function() {
+    // Get input values for username and email
+    const userName = document.getElementById('usernameInput').value;
+    const email = document.getElementById('emailInput').value;
+
+    // Get the auth token from localStorage or a cookie
+    const token = localStorage.getItem('authToken'); // Or retrieve it from cookies/session storage
+    
+    // Prepare the PATCH request
+    const response = await fetch('/organize/users/update', {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Attach the token for authorization
+        },
+        body: JSON.stringify({
+            userName, // Include username
+            email     // Include email
+        })
+    });
+
+    // Handle the response
+    const result = await response.json();
+
+    if (response.ok) {
+        alert('Profile updated successfully!');
+    } else {
+        alert(`Error: ${result.error || 'Failed to update profile'}`);
+    }
+});

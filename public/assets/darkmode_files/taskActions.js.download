@@ -1,0 +1,59 @@
+// Function to get the authentication token from local storage
+function getAuthToken() {
+    return localStorage.getItem('authToken'); // Adjust this based on where you store the token
+}
+
+// Function to mark a task as done or undone
+async function toggleTaskDone(taskId, isDone) {
+    try {
+        const response = await fetch(`http://localhost:5000/organize/users/tasks/${taskId}/done`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${getAuthToken()}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ isDone: !isDone }) // Toggle the isDone value
+        });
+
+        const updatedTask = await response.json();
+        if (response.ok) {
+            // Update UI after successfully marking the task as done/undone
+            updateTaskUI(updatedTask);
+        } else {
+            alert('Failed to update task: ' + updatedTask.error);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Function to update the task UI based on its status
+// Function to update the task UI based on its status
+function updateTaskUI(task) {
+    const taskItem = document.getElementById(task._id);
+    const label = taskItem.querySelector('label');
+
+    // Set strikethrough based on the updated isDone status
+    if (task.isDone) {
+        label.style.textDecoration = 'line-through'; // Strike through the label
+    } else {
+        label.style.textDecoration = 'none'; // Remove strike through
+    }
+}
+
+// Add event listeners to checkboxes
+function attachCheckboxListeners() {
+    const checkboxes = document.querySelectorAll('.form-check-input');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', async function() {
+            const taskId = this.id; // The ID of the task
+            const isDone = this.checked; // Check if the checkbox is checked
+            await toggleTaskDone(taskId, isDone); // Call the function to mark the task
+        });
+    });
+}
+
+// Call this function after fetching and displaying tasks
+function initTaskActions() {
+    attachCheckboxListeners();
+}

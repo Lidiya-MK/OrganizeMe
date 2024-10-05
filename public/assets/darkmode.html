@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://localhost:5000/dashboard/67011f676d68ef283ce04824 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./darkmode_files/css2" rel="stylesheet">
+    <link rel="stylesheet" href="./darkmode_files/bootstrap.css">
+    <link rel="stylesheet" href="./darkmode_files/userDashboard.css">
+    <link rel="stylesheet" href="./darkmode_files/all.min.css">
+    <title>OrganizeMe - Dashboard</title>
+</head>
+
+<body class="dark-mode"><!-- Dashboard Header -->
+<header class="header">
+    <div class="brand-name">OrganizeMe</div>
+    <div class="user-info">
+        <img src="./darkmode_files/default-image.avif" alt="User Profile" class="profile-pic" id="userProfilePic">
+        <div>
+            <strong id="userName">Mrs. Organized</strong><br>
+            <span class="email" id="userEmail">organized@gmail.com</span>
+        </div>
+        <!-- Light/Dark Mode Toggle Icon -->
+        <i id="themeToggleIcon" class="fas fa-sun" style="cursor: pointer; margin-left: 20px;"></i>
+    </div>
+</header>
+
+<!-- Main Dashboard Layout -->
+<div class="d-flex flex-row">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header">Weekly Task Log</div>
+        <div class="sidebar-item" id="importantTasks">Important</div>
+        <div class="sidebar-item" id="monday">Monday</div>
+        <div class="sidebar-item" id="tuesday">Tuesday</div>
+        <div class="sidebar-item" id="wednesday">Wednesday</div>
+        <div class="sidebar-item" id="thursday">Thursday</div>
+        <div class="sidebar-item" id="friday">Friday</div>
+        <div class="sidebar-item" id="saturday">Saturday</div>
+        <div class="sidebar-item" id="sunday">Sunday</div>
+        <div class="sidebar-item active" id="changeProfilePicture">Update Profile</div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Card for Todo List -->
+        <div class="card todo-card" id="taskCard" style="display: none;">
+            <div class="card-header">
+                <span id="currentDay">Update Profile</span>
+            </div>
+            <div class="card-body">
+                <!-- Input field for new task (visible only for days, not important) -->
+                <div id="taskInputArea" class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Enter new task" id="newTaskInput">
+                    <button class="btn btn-primary" id="addTaskButton">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <ul class="list-group" id="taskList"></ul>
+            </div>
+        </div>
+
+        <!-- Card for Important Tasks -->
+        <div class="card important-tasks-card" id="importantTasksCard" style="display: none;">
+            <div class="card-header">
+                Important
+            </div>
+            <div class="card-body">
+                <ul class="list-group" id="importantTaskList"><div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;"><img src="./darkmode_files/Procrastination.gif" alt="Procrastination GIF" style="height: auto; max-width: 40%; opacity: 0.8; border-radius: 20px;"><p style="font-size: 1rem; color: grey;">Whoo whoo! No important tasks yet!</p></div></ul>
+            </div>
+        </div>
+
+        <!-- Change Profile Picture Section -->
+        <div class="profile-picture-section" id="profilePictureSection" style="display: block;">
+            <div style="position: relative; display: inline-block;">
+                <img src="./darkmode_files/default-image.avif" alt="User Profile" class="profile-pic-large" id="userProfilePicLarge">
+
+                <!-- Edit icon -->
+                <button id="changeProfileButton" class="btn btn-primary">
+                    <i class="fas fa-pencil-alt" style="font-size: 24px; color: rgb(152, 60, 227);"></i>
+                </button>
+
+                <!-- File input for changing profile picture (hidden initially) -->
+                <input type="file" id="fileInput" style="display: none;" accept="image/*">
+            </div>
+
+            <!-- Section for username and email update -->
+            <div class="user-info2">
+                <!-- Username input field -->
+                <input type="text" id="usernameInput" placeholder="Username" class="form-control" style="margin-top: 15px;">
+                
+                <!-- Email input field -->
+                <input type="email" id="emailInput" placeholder="Email" class="form-control" style="margin-top: 10px;">
+            </div>
+
+            <!-- Button to submit profile changes (for username and email) -->
+            <button id="submitProfileChangesButton" class="btn btn-success" style="margin-top: 15px;">Update</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Dark Mode Toggle Script -->
+<script>
+    const body = document.body;
+    const themeToggleIcon = document.getElementById('themeToggleIcon');
+
+    // Function to toggle between light and dark mode
+    themeToggleIcon.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+        // Change icon based on the mode
+        if (body.classList.contains('dark-mode')) {
+            themeToggleIcon.classList.remove('fa-moon');
+            themeToggleIcon.classList.add('fa-sun');
+        } else {
+            themeToggleIcon.classList.remove('fa-sun');
+            themeToggleIcon.classList.add('fa-moon');
+        }
+    });
+
+
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove 'active' class from all items
+                document.querySelectorAll('.sidebar-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+
+                // Add 'active' class to the clicked item
+                this.classList.add('active');
+            });
+        });
+    
+</script>
+
+<script src="./darkmode_files/jquery-3.5.1.slim.min.js.download"></script>
+<script src="./darkmode_files/getUser.js.download"></script>
+<script src="./darkmode_files/userTasks.js.download"></script>
+<script src="./darkmode_files/taskActions.js.download"></script>
+<script src="./darkmode_files/markTaskImportant.js.download"></script>
+<script src="./darkmode_files/proUpdate.js.download"></script>
+<script src="./darkmode_files/sidebar.js.download"></script>
+<script src="./darkmode_files/popper.min.js.download"></script>
+<script src="./darkmode_files/bootstrap.min.js.download"></script>
+<script src="./darkmode_files/proUpdate.js.download"></script>
+<script src="./darkmode_files/displayProfile.js.download"></script>
+<script src="./darkmode_files/replacePropic.js.download"></script>
+
+</body></html>

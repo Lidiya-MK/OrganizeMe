@@ -1,0 +1,194 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f8f9fa;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+.email{
+    color:#6c6d6d ;
+}
+
+.sidebar {
+    height: calc(100vh - 60px);
+    background-color: #f8f9fa;
+    padding: 20px;
+    flex: 0 0 200px;
+}
+
+.sidebar-header {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sidebar-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.sidebar-item:hover {
+    background-color: #e2e6ea;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.todo-card {
+    margin-top: 20px;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.action-icons {
+    display: flex;
+    gap: 10px;
+    color: #6c6d6d;
+}
+
+.brand-name { 
+
+font-size: 24px;
+font-weight: bold;
+
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #111438;
+    color: white;
+}
+
+.dark-mode .header,
+.dark-mode .sidebar,
+.dark-mode .card {
+    background-color: #22274b;
+    color: white;
+}
+
+.dark-mode .sidebar-item:hover {
+    background-color: #2b2f5a;
+}
+
+.dark-mode .list-group-item {
+    background-color: #22274b;
+    color: white;
+}
+
+.profile-pic-large {
+    width: 150px; /* Adjust the size as needed */
+    height: 150px; /* Adjust the size as needed */
+    border-radius: 50%; /* Circular shape */
+    object-fit: cover; /* Maintain aspect ratio */ /* Center the image */
+    display: block;
+    padding: 0%;
+}
+
+
+.profile-picture-section {
+    text-align: center; /* Center the contents */
+}
+
+
+
+.user-info2 {
+    margin-top: 20px; /* Space above the input fields */
+}
+
+
+.sidebar {
+    width: 200px;
+    background-color: #f4f4f4; /* Light background for the sidebar */
+}
+
+.sidebar-item {
+
+    cursor: pointer;
+    color: grey; /* Default color */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.sidebar-item.active {
+    color: rgb(152, 60, 227); /* Active item color */
+    font-weight: bold; /* Optional: Make the active item bold */
+}
+
+.sidebar-item:hover {
+    background-color: #e0e0e0; /* Optional: Highlight on hover */
+}
+
+
+.btn-primary{
+    background-color:  rgb(152, 60, 227);
+    font-size: smaller;
+    border: none;
+    border-radius: 20px;
+
+}
+
+.btn-success{
+    font-size: smaller;
+    border: none;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+.profile-picture-section {
+    text-align: center; /* Center the contents */
+    position: relative; /* Ensure the parent is positioned */
+}
+
+.profile-pic-large {
+    width: 200px; /* Adjust the size as needed */
+    height: 200px; /* Adjust the size as needed */
+    border-radius: 50%; /* Circular shape */
+    object-fit: cover; /* Maintain aspect ratio */ 
+    display: block; /* Block-level element for centering */
+    padding: 0; /* Remove any padding */
+    border: 4px dotted rgb(152, 60, 227); /* Ensure border is applied */
+}
+
+#changeProfileButton {
+    position: absolute; 
+    bottom: 10px; /* Adjust as needed for positioning */
+    left: 10px; /* Change from right to left */
+    border: none; 
+    background: transparent; 
+    cursor: pointer;
+    z-index: 1; /* Ensure the button is on top */
+}
+
+

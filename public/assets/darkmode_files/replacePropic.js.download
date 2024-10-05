@@ -1,0 +1,37 @@
+// Handle file input change event
+document.getElementById('changeProfileButton').addEventListener('click', () => {
+    document.getElementById('fileInput').click(); // Trigger the hidden file input
+});
+
+// After selecting a new picture, upload and update the profile picture
+document.getElementById('fileInput').addEventListener('change', async (event) => {
+    const file = event.target.files[0]; // Get the selected file
+    if (!file) return;
+
+    const token = localStorage.getItem('authToken'); // Get the token from local storage
+
+    const formData = new FormData();
+    formData.append('profilePicture', file); // Append the selected file to form data
+
+    try {
+        const response = await fetch('/organize/users/profile-picture', {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${token}`, // Include the token in the request header
+            },
+            body: formData, // Send the file as form data
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            // Update the img element with the new profile picture
+            document.getElementById('userProfilePicLarge').src = result.profilePicture;
+            alert("Profile picture updated successfully!");
+        } else {
+            console.error("Error updating profile picture:", result.message);
+        }
+    } catch (error) {
+        console.error("Error updating profile picture:", error.message);
+    }
+});

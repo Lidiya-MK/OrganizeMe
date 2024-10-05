@@ -1,0 +1,55 @@
+// Function to get the authentication token (assumed to be stored in local storage)
+function getAuthToken() {
+    return localStorage.getItem('authToken'); // Adjust this based on where you store the token
+}
+
+// Function to toggle task importance
+async function toggleImportant(taskId, isImportant) {
+    const response = await fetch(`http://localhost:5000/organize/users/tasks/${taskId}/star`, {
+        method: 'PUT', // Use PUT for updating existing resources
+        headers: {
+            'Authorization': `Bearer ${getAuthToken()}`, // Add the token to the header
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (response.ok) {
+        const updatedTask = await response.json();
+        const starIcon = document.querySelector(`.fa-star[onclick="toggleImportant('${taskId}', ${isImportant})"]`);
+
+        // Toggle the star color
+        starIcon.style.color = updatedTask.isImportant ? 'gold' : 'gray';
+    } else {
+        console.error('Failed to toggle task importance');
+    }
+}
+
+// Function to display tasks in the list (included for context)
+function displayTasks(tasks) {
+    const taskList = document.getElementById('taskList');
+    taskList.innerHTML = ''; // Clear existing tasks
+
+    tasks.forEach(task => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('list-group-item');
+        listItem.id = task._id; // Set the ID for easy reference
+
+        // Set the label style based on isDone
+        const labelStyle = task.isDone ? 'line-through' : 'none';
+
+        listItem.innerHTML = `
+            <input type="checkbox" class="form-check-input me-2" id="${task._id}" ${task.isDone ? 'checked' : ''}>
+            <label for="${task._id}" style="text-decoration: ${labelStyle};">${task.title}</label>
+            <div class="action-icons">
+                <i class="fas fa-edit" onclick="editTask('${task._id}')"></i>
+                <i class="fas fa-trash" onclick="deleteTask('${task._id}')"></i>
+                <i class="fas fa-star" style="color: ${task.isImportant ? 'gold' : 'gray'};" onclick="toggleImportant('${task._id}', ${task.isImportant})"></i>
+            </div>
+        `;
+        taskList.appendChild(listItem);
+    });
+
+    initTaskActions(); // Initialize the checkbox listeners after displaying tasks
+}
+
+// Ensure this file is included after the main script that calls displayTasks
