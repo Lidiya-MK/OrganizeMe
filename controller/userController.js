@@ -55,3 +55,36 @@ const createToken = (id) => {
         res.status(500).json({ message: 'Login failed. Please try again.' });
     }
   };
+
+
+  const setProfilePicture = async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+      }
+  
+      const profilePicture = req.file.path; 
+      const userId = req.user._id; 
+  
+      const user = await User.findByIdAndUpdate(userId, { profilePicture }, { new: true });
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      res.status(200).json({ message: 'Profile picture updated successfully', user });
+    } catch (error) {
+      res.status(400).json({ error: 'Failed to update profile picture' });
+    }
+  };
+  
+
+  const createTask = async (req, res) => {
+    try {
+      const { title, description, day } = req.body;
+      const task = new Task({ title, description, day, owner: req.user._id });
+      await task.save();
+      res.status(201).json(task);
+    } catch (error) {
+      res.status(400).json({ error: 'Task creation failed' });
+    }
+  };
